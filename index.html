@@ -1,1 +1,98 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js Calculator</title>
+	<style type="text/css" media="screen">
+		.container{	display: flex;	}
+		.calc{
+			flex-direction: column;
+			flex-wrap: wrap;
+			width: 400px;
+			height:600px;
+			border: 1px darkgrey solid;
+			margin:auto;
+		}
+		.screen{
+			width:90%;
+			margin:2% 5%;
+			text-align: right;
+			border:grey solid 1px;
+		}
+		.display{
+			padding: 5px;
+			font-size: 34px;
+			margin-top: 0px;
+		}
+		.history{
+			padding:0px 5px 0px 0px;
+			margin-top: -30px;
+			margin-bottom: 0px;
+		}
+		.buttons{
+			margin: auto;
+		}
+		.row{
+			display: flex;
+			margin:1%;
+		}
+		
+		button{
+			flex-grow: 1;
+			
+			margin:1%;
+		}
+		.wide {
+			flex-grow: 2;
+		}
+		.tall{
+		}
+		
+	</style>
+</head>
+<body>
+	<section class="container">
+		<div class="calc">
+			<div class="screen">
+				<p class="display">0</p>
+				<p class="history">0</p>
+			</div>
+			<div class="buttons">
+				<div class="row">
+					<button>CE</button>
+					<button>C</button>
+					<button>*</button>
+					<button>/</button>
+				</div>
+				<div class="row">
+					<button>1</button>
+					<button>2</button>
+					<button>3</button>
+					<button>+</button>
+				</div>
+				<div class="row">
+					<button>4</button>
+					<button>5</button>
+					<button>6</button>
+					<button>-</button>
+				</div>
+				<div class="row">
+					<button>7</button>
+					<button>8</button>
+					<button>9</button>
+					
+				</div>
+				<div class="row">
+					<button class="wide">0</button>
+					<button>2</button>
+					<button class="tall">=</button>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+<script type="text/javascript" async defer>
+	
+</script>
+</html>
