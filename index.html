@@ -89,6 +89,7 @@ body{
 }
 		
 	</style>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.10.0/math.min.js"></script>
 </head>
 <body>
 	<section class="container">
@@ -128,6 +129,13 @@ body{
 </section>
 </body>
 <script type="text/javascript" async defer>
+
+//configuring math.js to deal with floating point numbers
+math.config({
+  number: 'BigNumber',  // Default type of number:
+                        // 'number' (default), 'BigNumber', or 'Fraction'
+  precision: 10         // Number of significant digits for BigNumbers
+});
 	
 window.onload = calc;
 
@@ -152,15 +160,9 @@ function calc(){
 
 
       function CE(){
-        //clear entry... messy logic
-        if(result !== ""){
-          clear();
-        }
-
         if(operator !== ""){
           num2 = "";
-        } 
-        else {
+        } else {
           clear();
         }
       }
@@ -172,24 +174,23 @@ function calc(){
         //history = ""; // for history
         if (operator === ""){
           num1 += key;
-          //history = num1;
           document.getElementById('display').innerHTML = num1;
-        } if(num1 !== "" && operator !== "" && num2 !== ""){
+        } else if(result !== ""){
           clear();
           num1 = key;
           document.getElementById('display').innerHTML = num1;
-        }
-        else {
+        } else if(operator !== "") {
           num2 += key;
-          //history += num2;
           document.getElementById('display').innerHTML = num2;
-        }
+        }   
       }
 
       function opPress(key){
         //history = ""; //for history
           operator = key;
           num2 = "";
+          result = "";
+          //console.log("num1: " + num1 + "; op: " + operator + "; num2: " + num2 + "; result: " + result);
         
       }
 
@@ -198,7 +199,7 @@ function calc(){
       //only fire if prerequisite fields are full
       function equals(){
         if(num1 !== "" && operator !== "" && num2 !== ""){
-          result = eval(num1+operator+num2);
+          result = math.eval(num1+operator+num2);
           document.getElementById('display').innerHTML = result;
           num1 = result;
           //history += result;
@@ -226,7 +227,7 @@ function calc(){
       //mouseclick helper
       var mouse = function(){
         var clicked = this.innerHTML;
-        console.log(clicked);
+        //console.log(clicked);
         input(clicked);
       }
 
@@ -234,9 +235,9 @@ function calc(){
       //add special case for enter key
       var keyboard = function(e) {
         var pushedKey = e.key;
-        console.log(pushedKey);
+        //console.log(pushedKey);
         if(pushedKey === 'Enter') {
-          console.log("matched");
+          //console.log("matched");
           equals();
         } else {
           input(pushedKey);
@@ -261,7 +262,7 @@ function calc(){
   
 //clear results;
       function clear(){
-        //history = 0; //for history
+        history = ""; //for history
         num1 = "";
         num2 = "";
         operator = "";
